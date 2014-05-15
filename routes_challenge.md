@@ -1,4 +1,4 @@
-![imgur](http://i.imgur.com/8LjlXox.png)
+
 
 Ryan-
 
