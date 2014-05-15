@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'users/new'
+
   get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -7,13 +9,30 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   Blog::Application.routes.draw do
    
-    resources :articles do
-      resources :comments
-    end
+  get 'users/new'
+
+    resources :users 
+      # resources :articles do
+    match '/articles/' => 'articles#index', via: :get
+    match '/articles/' => 'articles#create', via: :post
+    match '/articles/new' => 'articles#new', via: :get
+    match '/articles/:id/edit' => 'articles#edit', via: :get
+    match '/articles/:id' => 'articles#show', via: :get
+    match '/articles/:id' => 'articles#update', via: :put
+    match 'articles/:id' => 'articles#destroy', via: :delete
+        resources :comments
+        
+      # end
+   
+
+
 
     root 'welcome#index'
 
    end
+
+
+# match ':controller(/:action(/:id))(.:format)'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
